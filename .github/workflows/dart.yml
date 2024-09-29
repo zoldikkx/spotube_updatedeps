@@ -25,7 +25,10 @@ jobs:
       - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
 
       - name: Install dependencies
-        run: dart pub get
+        run: flutter pub get
+
+      - name: Upgrade dependencies
+        run: flutter pub upgrade
 
       # Uncomment this step to verify the use of 'dart format' on each commit.
       # - name: Verify formatting
@@ -40,3 +43,9 @@ jobs:
       # want to change this to 'flutter test'.
       - name: Run tests
         run: dart test
+
+      - name: bootstrap project
+        run: dart run build_runner build --delete-conflicting-outputs --enable-experiment=records,patterns
+
+      - name: Build
+        run: flutter run
